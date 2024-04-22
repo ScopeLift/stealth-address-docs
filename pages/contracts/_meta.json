@@ -1,0 +1,7 @@
+{
+  "overview": "Overview",
+  "erc5564-contract": "ERC5564Announcer.sol",
+  "erc6538-contract": "ERC6538Registry.sol",
+  "contract-interfaces": "Contract Interfaces",
+  "deployments": "Deployment Addresses"
+}
