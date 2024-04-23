@@ -1,0 +1,16 @@
+## Overview
+
+### Stealth Address SDK
+
+The Stealth Address SDK provides developers a toolkit for integrating stealth transaction capabilities into Ethereum-based applications, supporting ERC-5564 and ERC-6538.
+
+### Key Features
+
+- **Stealth Address Utilities**: `generateStealthAddress` and `computeStealthKey` are examples of utility functions that help build up a stealth transaction. More info detailed in further sections.
+- **Stealth Transaction Monitoring**: `watchAnnouncementsForUser` combines several important steps in a stealth transaction, such as watching for announcments relevant to a specific user.
+- **Contract Interaction Preparation**: `prepare` functions simulate and return the payloads for key ERC-5564 and ERC-6538 contract interactions, such as `prepareRegisterKeys`, which prepares registering a stealth meta-address and outputs the required transaction payload (`to`, `from`, `data`).
+- **Examples**: The SDK includes a variety of examples to help developers get started with stealth transactions.
+
+### Use Cases
+
+The sdk is built for developers looking to integrate stealth transactions into their applications, adding a layer of privacy into their apps.
