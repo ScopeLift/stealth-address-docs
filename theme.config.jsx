@@ -3,6 +3,6 @@ export default {
   project: {
     link: "https://github.com/ScopeLift/stealth-address-sdk",
   },
-  docsRepositoryBase: "https://github.com/ScopeLift/stealth-address-sdk",
+  docsRepositoryBase: "https://github.com/ScopeLift/stealth-address-docs",
   // ... other theme options
 };
