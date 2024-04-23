@@ -1,0 +1,27 @@
+# Overview
+
+The SDK provides a suite of actions that enable developers to handle various stealth address-related functionalities seamlessly.
+
+These actions can be consumed from an initialized `stealthClient` instance:
+
+```ts
+import { createStealthClient } from "@scopelift/stealth-address-sdk";
+
+const stealthClient = createStealthClient({
+  chainId,
+  rpcUrl,
+});
+
+const announcements = await stealthClient.getAnnouncements(...args);
+```
+
+Or alternatively, you can call the action directly by passing the [`clientParams`](../glossary/types.md#clientparams) object with `chainId` and `rpcUrl`:
+
+```ts
+import { getAnnouncements } from "@scopelift/stealth-address-sdk";
+
+const announcements = await getAnnouncements({
+  clientParams: { chainId, rpcUrl },
+  ...args,
+});
+```

@@ -1,0 +1,85 @@
+import { Tabs } from "nextra/components";
+
+# getStealthMetaAddress
+
+Retrieves a stealth meta-address from the ERC-6538 Registry contract.
+
+## Usage
+
+<Tabs items={['example.ts', 'client.ts']} selectedIndex={0}>
+  <Tabs.Tab>
+    ```ts
+    import { stealthClient } from "./client";
+
+    const stealthMetaAddress = await stealthClient.getStealthMetaAddress({
+      ERC6538Address,
+      registrant,
+      schemeId
+    });
+
+    // '0x...'
+    ```
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```ts
+    import { createStealthClient } from "@scopelift/stealth-address-sdk";
+
+    export const stealthClient = createStealthClient({
+      chainId,
+      rpcUrl,
+    });
+    ```
+
+  </Tabs.Tab>
+</Tabs>
+
+## Return Value
+
+- **Type:** [`HexString`](../glossary/types.md#hexstring)
+
+  The stealth meta address of the registrant.
+
+## Parameters
+
+### ERC6538Address
+
+- **Type:** [`HexString`](../glossary/types.md#hexstring)
+
+  The address of the ERC-6538 Registry contract.
+
+```ts {2}
+const stealthMetaAddress = await stealthClient.getStealthMetaAddress({
+  ERC6538Address,
+  registrant,
+  schemeId,
+});
+```
+
+### registrant
+
+- **Type:** [`EthAddress`](../glossary/types.md#ethaddress)
+
+  The identifier of the registrant, which could be an Ethereum address or an ENS name.
+
+```ts {3}
+const stealthMetaAddress = await stealthClient.getStealthMetaAddress({
+  ERC6538Address,
+  registrant,
+  schemeId,
+});
+```
+
+### schemeId
+
+- **Type:** [`VALID_SCHEME_ID`](../glossary/types.md#valid_scheme_id)
+
+  The ID of the stealth address scheme.
+
+```ts {4}
+const stealthMetaAddress = await stealthClient.getStealthMetaAddress({
+  ERC6538Address,
+  registrant,
+  schemeId,
+});
+```

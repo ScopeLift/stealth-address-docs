@@ -1,0 +1,58 @@
+import { Callout } from "nextra/components";
+
+# Terms
+
+Glossary of Stealth address terms.
+
+## Stealth Address
+
+Stealth addresses allow senders of transactions or transfers to non-interactively generate private accounts exclusively accessible by their recipients.
+
+The recipients alone can access the funds stored at their stealth addresses, as they are the sole owners of the necessary private key.
+
+## Stealth Meta-Address
+
+A stealth meta-address is a set of one or two public keys that can be used to compute a stealth address for a given recipient.
+
+It is composed of:
+
+- **spending key**
+
+  A private key that can be used to spend funds sent to a stealth address. A “spending public key” is the corresponding public key.
+
+- **viewing key**
+
+  A private key that can be used to determine if funds sent to a stealth address belong to the recipient who controls the corresponding spending key. A “viewing public key” is the corresponding public key.
+
+[Learn more](https://eips.ethereum.org/EIPS/eip-5564)
+
+## Scheme Id
+
+Each stealth address scheme is identified by a unique identifier called the `schemeID`.
+
+The implementation of the methods `generateStealthAddress`, `checkStealthAddress`, and `computeStealthKey` are scheme-specific, and so the scheme ID is used to determine which implementation to use.
+
+The first implementation, with `schemeId` of `1` uses SECP256k1 elliptic curve cryptography.
+
+<Callout type="info">
+  This SDK conforms to the `schemeId` `1` specification laid out in
+  [ERC-5564](https://eips.ethereum.org/EIPS/eip-5564).
+</Callout>
+
+## Stealth Key
+
+Refers to the private key associated with a stealth address.
+
+## Ephemeral Public Key
+
+The ephemeral public key is generated from a random ephemeral private key and is used to compute the shared secret, enabling the recipient to decrypt announcements and verify their relevance to the user.
+
+It is "ephemeral" because it is used only once to derive the corresponding stealth address and its associated details.
+
+## View Tag
+
+The first byte of the metadata field in the `Announce` event log emitted from the `ERC5564Announcer` contract.
+
+The view tag allows for more effective lookup when checking if the stealth address is intended for the recipient.
+
+If the view tag doesn't match the expected, then the rest of the checking logic can be skipped.
