@@ -1,0 +1,93 @@
+# generateStealthAddress
+
+Generates a stealth address from a given stealth meta-address.
+
+## Import
+
+```ts
+import { generateStealthAddress } from "@scopelift/stealth-address-sdk";
+```
+
+## Usage
+
+```ts
+// Follows the format: "st:<chain>:<stealthMetaAddress>", where <chain> is the chain identifier (https://eips.ethereum.org/EIPS/eip-3770#examples) and <stealthMetaAddress> is the stealth meta-address.
+// Alternatively, you can simply provide the stealth meta-address without the URI prefix: "0x..."
+const stealthMetaAddressURI = "...";
+
+// Generate a stealth address using the default scheme (1)
+// To learn more about the initial implementation scheme using SECP256k1, please see the reference here (https://eips.ethereum.org/EIPS/eip-5564)
+// When not passing in the scheme id, the default scheme id is 1
+const result = generateStealthAddress({ stealthMetaAddressURI });
+
+// Use the stealth address
+console.log(result.stealthAddress);
+```
+
+## Returns
+
+```ts
+/**
+ * Represents the output of the generateStealthAddress function,
+ * containing the stealth address, ephemeralPublicKey, and viewTag according to the spec.
+ */
+export type GenerateStealthAddressReturnType = {
+  /** The generated stealth address. */
+  stealthAddress: EthAddress;
+  /** The ephemeral public key used to generate the stealth address. */
+  ephemeralPublicKey: HexString;
+  /** The view tag derived from the hashed shared secret. */
+  viewTag: HexString;
+};
+```
+
+The generated stealth address details.
+
+## Parameters
+
+### stealthMetaAddressURI
+
+- **Type:** `string` or [`HexString`](../glossary/types.md#hexstring)
+  The stealth meta-address URI or the stealth meta-address itself.
+
+  The URI follows the format: `st:<chain>:<stealthMetaAddress>`, where `<chain>` is the chain identifier ([EIP-3770 examples](https://eips.ethereum.org/EIPS/eip-3770#examples)) and `<stealthMetaAddress>` is the stealth meta-address.
+
+  Alternatively, you can provide the stealth meta-address without the URI prefix like so `0x...`.
+
+```ts {4}
+const { stealthAddress, ephemeralPublicKey, viewTag } = generateStealthAddress({
+  ephemeralPrivateKey,
+  schemeId,
+  stealthMetaAddressURI,
+});
+```
+
+### schemeId (optional)
+
+- **Type:** [`VALID_SCHEME_ID`](../glossary/constants.md#valid_scheme_id)
+  The scheme id used to generate the stealth address.
+
+  The default scheme id is `1`.
+
+```ts {3}
+const { stealthAddress, ephemeralPublicKey, viewTag } = generateStealthAddress({
+  ephemeralPrivateKey,
+  schemeId,
+  stealthMetaAddressURI,
+});
+```
+
+### ephemeralPrivateKey (optional)
+
+- **Type:** [`HexString`](../glossary/types.md#hexstring)
+  The ephemeral private key used to generate the stealth address. If not provided, a random ephemeral private key is generated.
+
+  The ephemeral private key is a 32-byte hexadecimal string.
+
+```ts {2}
+const { stealthAddress, ephemeralPublicKey, viewTag } = generateStealthAddress({
+  ephemeralPrivateKey,
+  schemeId,
+  stealthMetaAddressURI,
+});
+```

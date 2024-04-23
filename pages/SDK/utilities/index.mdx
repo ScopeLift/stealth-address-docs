@@ -1,0 +1,28 @@
+# Overview
+
+This section describes the various utility functions provided by the Stealth Address SDK. These functions facilitate low-level stealth address operations.
+
+All utility functions can be imported from the sdk like so:
+
+```ts
+import { generateStealthAddress } from "@scopelift/stealth-address-sdk";
+import { checkStealthAddress } from "@scopelift/stealth-address-sdk";
+import { computeStealthKey } from "@scopelift/stealth-address-sdk";
+```
+
+## Scheme Id
+
+The `schemeId` refers to the implementation scheme used for encoding a stealth meta-address, in which all stealth address functionality is dependent upon.
+
+When using some functions, you will need to provide a `schemeId` when using the SDK. The `schemeId` is a number that represents the scheme used to generate the stealth address.
+
+The default `schemeId` is 1 and currently is the only supported/valid scheme.
+
+You can find more info about `schemeId` 1 [here](https://eips.ethereum.org/EIPS/eip-5564).
+
+When you need to pass in the `schemeId` to a function, you can get the valid `schemeId` enum type reference like so to ensure you are using a valid `schemeId`:
+
+```ts
+import { VALID_SCHEME_ID } from "@scopelift/stealth-address-sdk";
+const schemeId = VALID_SCHEME_ID.SCHEME_ID_1;
+```
