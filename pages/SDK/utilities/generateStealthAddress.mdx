@@ -1,3 +1,5 @@
+import { Tabs } from "nextra/components";
+
 # generateStealthAddress
 
 Generates a stealth address from a given stealth meta-address.
@@ -24,10 +26,12 @@ const { stealthAddress, ephemeralPublicKey, viewTag } = generateStealthAddress({
 ```
 
 ## Return Value
+<Tabs items={['example.ts']} selectedIndex={0}>
+    <Tabs.Tab>
 ```ts
 /**
  * Represents the output of the generateStealthAddress function,
- * containing the stealth address, ephemeralPublicKey, and viewTag according to the spec.
+ * containing the stealth address, ephemeralPublicKey, and viewTag.
  */
 export type GenerateStealthAddressReturnType = {
   /** The generated stealth address. */
@@ -38,6 +42,8 @@ export type GenerateStealthAddressReturnType = {
   viewTag: HexString;
 };
 ```
+    </Tabs.Tab>
+</Tabs>
 
 The generated stealth address details.
 
