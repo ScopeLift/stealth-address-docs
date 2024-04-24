@@ -82,6 +82,8 @@ const { stealthAddress, ephemeralPublicKey, viewTag } = generateStealthAddress({
 - **Type:** [`HexString`](../glossary/types.md#hexstring)
   The ephemeral private key used to generate the stealth address. If not provided, a random ephemeral private key is generated.
 
+  You most likely won't need to pass this parameter, as you will want the ephemeral public key (derived from the ephemeral private key) to be generated non-deterministically. However, if you need to generate the stealth address deterministically (such as during testing), you can provide the ephemeral private key.
+
   The ephemeral private key is a 32-byte hexadecimal string.
 
 ```ts {2}
