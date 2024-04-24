@@ -27,13 +27,14 @@ import { computeStealthKey } from "@scopelift/stealth-address-sdk";
     // "0x..."
     ```
     </Tabs.Tab>
+
 </Tabs>
 
 ## Return Value
+
 [`HexString`](../glossary/types.md#hexstring)
 
 The computed stealth address private key.
-
 
 ## Parameters
 
@@ -47,7 +48,7 @@ const stealthPrivateKey = computeStealthKey({
   ephemeralPublicKey: "0x...",
   schemeId: 1,
   spendingPrivateKey: "0x...",
-  viewingPrivateKey: "0x..."
+  viewingPrivateKey: "0x...",
 });
 ```
 
@@ -61,34 +62,34 @@ const stealthPrivateKey = computeStealthKey({
   ephemeralPublicKey: "0x...",
   schemeId: 1,
   spendingPrivateKey: "0x...",
-  viewingPrivateKey: "0x..."
+  viewingPrivateKey: "0x...",
 });
 ```
 
 ### spendingPrivateKey
 
 - **Type:** [`HexString`](../glossary/types.md#hexstring)
-    The spending private key used to generate the stealth meta-address.
+  The spending private key used to generate the stealth meta-address.
 
 ```ts {4}
 const stealthPrivateKey = computeStealthKey({
   ephemeralPublicKey: "0x...",
   schemeId: 1,
   spendingPrivateKey: "0x...",
-  viewingPrivateKey: "0x..."
+  viewingPrivateKey: "0x...",
 });
 ```
 
 ### viewingPrivateKey
 
 - **Type:** [`HexString`](../glossary/types.md#hexstring)
-    The viewing private key used to generate the stealth meta-address.
+  The viewing private key used to generate the stealth meta-address.
 
 ```ts {5}
 const stealthPrivateKey = computeStealthKey({
   ephemeralPublicKey: "0x...",
   schemeId: 1,
   spendingPrivateKey: "0x...",
-  viewingPrivateKey: "0x..."
+  viewingPrivateKey: "0x...",
 });
 ```
