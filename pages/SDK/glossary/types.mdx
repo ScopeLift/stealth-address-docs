@@ -7,9 +7,21 @@ Glossary of types in the Stealth Address SDK.
 
     ## `VALID_SCHEME_ID`
     ```ts
-
-        export enum VALID_SCHEME_ID {
-            SCHEME_ID_1 = 1
-        }
+    export enum VALID_SCHEME_ID {
+      SCHEME_ID_1 = 1
+    }
     ```
     Signifies a valid scheme id; the only valid scheme id is currently `1`.
+
+    ## `Announce`
+    The event emitted from the `announce` function call on the ERC-5564 contract.
+
+    This is an informational typescript type definition of the event and isn't an actual type provided in the SDK.
+
+    ```ts
+    export type Announce = {
+      stealthAddress: EthAddress;
+      ephemeralPublicKey: HexString;
+      viewTag: HexString;
+    }
+    ```

@@ -1,4 +1,5 @@
 {
   "index": "Overview",
-  "generateStealthAddress": "generateStealthAddress"
+  "generateStealthAddress": "generateStealthAddress",
+  "computeStealthKey": "computeStealthKey"
 }
