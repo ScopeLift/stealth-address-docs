@@ -12,6 +12,8 @@ import { generateStealthAddress } from "@scopelift/stealth-address-sdk";
 
 ## Usage
 
+<Tabs items={['example.ts']} selectedIndex={0}>
+    <Tabs.Tab>
 ```ts
 // Follows the format: "st:<chain>:<stealthMetaAddress>", where <chain> is the chain identifier (https://eips.ethereum.org/EIPS/eip-3770#examples) and <stealthMetaAddress> is the stealth meta-address.
 // Alternatively, you can simply provide the stealth meta-address without the URI prefix: "0x..."
@@ -21,14 +23,13 @@ const stealthMetaAddressURI = "...";
 // To learn more about the initial implementation scheme using SECP256k1, please see the reference here (https://eips.ethereum.org/EIPS/eip-5564)
 // When not passing in the scheme id, the default scheme id is 1
 const { stealthAddress, ephemeralPublicKey, viewTag } = generateStealthAddress({
-  stealthMetaAddressURI,
+stealthMetaAddressURI,
 });
 ```
+    </Tabs.Tab>
+</Tabs>
 
 ## Return Value
-
-<Tabs items={['example.ts']} selectedIndex={0}>
-    <Tabs.Tab>
 ```ts
 /**
  * Represents the output of the generateStealthAddress function,
@@ -43,8 +44,6 @@ export type GenerateStealthAddressReturnType = {
   viewTag: HexString;
 };
 ```
-    </Tabs.Tab>
-</Tabs>
 
 The generated stealth address details.
 
