@@ -1,0 +1,113 @@
+import { Tabs } from 'nextra/components'
+
+# getAnnouncements
+
+Get announcement event logs from the `ERC5564Announcer` contract.
+
+## Usage
+
+<Tabs items={['example.ts', 'client.ts']} selectedIndex={0}>
+  <Tabs.Tab>
+    ```ts {11-20}
+    import stealthClient from './client';
+
+    const announcements = await stealthClient.getAnnouncements({
+      ERC5564Address,
+      args,
+      fromBlock,
+      toBlock
+    });
+
+    /*
+    [
+      {
+        caller: "0x...",
+        ephemeralPubKey: "0x...",
+        metadata: "0x...",
+        schemeId: 1n,
+        stealthAddress: "0x...",
+        more log data...
+      }
+    ]
+    */
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```ts
+    import { createStealthClient } from "@scopelift/stealth-address-sdk";
+
+    const stealthClient = createStealthClient({
+      chainId,
+      rpcUrl,
+    });
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+## Return Value
+
+- **Type:** [`GetAnnouncementsReturnType`](../glossary/types.md#getannouncementsreturntype)
+
+    An array of `Announce` event log data emitted from the `ERC5564Announcer` contract.
+
+## Parameters
+
+### ERC5564Address
+
+- **Type:** [`HexString`](../glossary/types.md#hexstring)
+
+  The address of the `ERC5564Announcer` contract.
+
+```ts {2}
+const announcements = await stealthClient.getAnnouncements({
+  ERC5564Address,
+  args,
+  fromBlock,
+  toBlock
+})
+```
+
+### args
+
+- **Type:** [`AnnouncementArgs`](../glossary/types.md#announcementargs)
+
+  The arguments to filter the `Announce` event logs.
+
+```ts {3}
+const announcements = await stealthClient.getAnnouncements({
+  ERC5564Address,
+  args,
+  fromBlock,
+  toBlock
+})
+```
+
+### fromBlock
+
+- **Type:** [`BlockType`](../glossary/types.md#blocktype)
+
+  The block number to start fetching logs from.
+
+```ts {4}
+const announcements = await stealthClient.getAnnouncements({
+  ERC5564Address,
+  args,
+  fromBlock,
+  toBlock
+})
+```
+
+### toBlock
+
+- **Type:** [`BlockType`](../glossary/types.md#blocktype)
+
+  The block number to stop fetching logs at.
+
+```ts {5}
+const announcements = await stealthClient.getAnnouncements({
+  ERC5564Address,
+  args,
+  fromBlock,
+  toBlock
+})
+```
