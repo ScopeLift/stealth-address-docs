@@ -1,0 +1,80 @@
+import { Tabs } from 'nextra/components'
+
+# getAnnouncementsForUser
+
+Filters a list of given announcements based on if they are relevant for the user.
+
+## Usage
+
+<Tabs items={['example.ts', 'client.ts']} selectedIndex={0}>
+  <Tabs.Tab>
+    ```ts
+    import { stealthClient } from "./client";
+
+    const userAnnouncements = await stealthClient.getAnnouncementsForUser({
+      announcements,
+      spendingPublicKey,
+      viewingPrivateKey,
+      excludeList,
+      includeList
+    });
+
+    /*
+    Array of announcements relevant to the user.
+
+    [
+      {
+        caller: "0x...",
+        ephemeralPubKey: "0x...",
+        metadata: "0x...",
+        schemeId: 1n,
+        stealthAddress: "0x...",
+        more log data...
+      }
+    ]
+    */
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```ts
+    import { createStealthClient } from "@scopelift/stealth-address-sdk";
+
+    export const stealthClient = createStealthClient({
+      chainId,
+      rpcUrl,
+    });
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+## Return Value
+
+- **Type:** [`GetAnnouncementsForUserReturnType`](../glossary/types.md#getannouncementsforuserreturntype)
+  An array of announcements relevant to the user, filtered by the provided criteria.
+
+## Parameters
+
+### announcements
+
+- **Type:** [`AnnouncementLog[]`](../glossary/types.md#announcementlog)
+  An array of announcement logs to be processed and filtered.
+
+### spendingPublicKey
+
+- **Type:** [`HexString`](../glossary/types.md#hexstring)
+  The user's spending public key.
+
+### viewingPrivateKey
+
+- **Type:** [`HexString`](../glossary/types.md#hexstring)
+  The user's viewing private key.
+
+### excludeList (optional)
+
+- **Type:** `EthAddress[]`
+  Addresses to exclude from the results.
+
+### includeList (optional)
+
+- **Type:** `EthAddress[]`
+  Addresses to specifically include in the results.

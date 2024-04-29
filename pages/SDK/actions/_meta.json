@@ -1,4 +1,5 @@
 {
   "index": "Overview",
-  "getAnnouncements": "getAnnouncements"
+  "getAnnouncements": "getAnnouncements",
+  "getAnnouncementsForUser": "getAnnouncementsForUser"
 }

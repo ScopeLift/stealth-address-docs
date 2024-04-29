@@ -9,7 +9,7 @@ Get announcement event logs from the `ERC5564Announcer` contract.
 <Tabs items={['example.ts', 'client.ts']} selectedIndex={0}>
   <Tabs.Tab>
     ```ts {11-20}
-    import stealthClient from './client';
+    import { stealthClient } from './client';
 
     const announcements = await stealthClient.getAnnouncements({
       ERC5564Address,
@@ -36,7 +36,7 @@ Get announcement event logs from the `ERC5564Announcer` contract.
     ```ts
     import { createStealthClient } from "@scopelift/stealth-address-sdk";
 
-    const stealthClient = createStealthClient({
+    export const stealthClient = createStealthClient({
       chainId,
       rpcUrl,
     });
