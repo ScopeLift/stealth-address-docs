@@ -50,6 +50,7 @@ Filters a list of given announcements based on if they are relevant for the user
 ## Return Value
 
 - **Type:** [`GetAnnouncementsForUserReturnType`](../glossary/types.md#getannouncementsforuserreturntype)
+
   An array of announcements relevant to the user, filtered by the provided criteria.
 
 ## Parameters
@@ -57,24 +58,79 @@ Filters a list of given announcements based on if they are relevant for the user
 ### announcements
 
 - **Type:** [`AnnouncementLog[]`](../glossary/types.md#announcementlog)
+
   An array of announcement logs to be processed and filtered.
+
+```ts {3}
+const userAnnouncements = await stealthClient.getAnnouncementsFroUser({
+  announcements,
+  spendingPublicKey,
+  viewingPrivateKey,
+  excludeList,
+  includeList
+})
+```
 
 ### spendingPublicKey
 
 - **Type:** [`HexString`](../glossary/types.md#hexstring)
+
   The user's spending public key.
+
+```ts {4}
+const userAnnouncements = await stealthClient.getAnnouncementsFroUser({
+  announcements,
+  spendingPublicKey,
+  viewingPrivateKey,
+  excludeList,
+  includeList
+})
+```
 
 ### viewingPrivateKey
 
 - **Type:** [`HexString`](../glossary/types.md#hexstring)
+
   The user's viewing private key.
+
+```ts {5}
+const userAnnouncements = await stealthClient.getAnnouncementsFroUser({
+  announcements,
+  spendingPublicKey,
+  viewingPrivateKey,
+  excludeList,
+  includeList
+})
+```
 
 ### excludeList (optional)
 
-- **Type:** `EthAddress[]`
+- **Type:** [`EthAddress[]`](../glossary/types.md#ethaddress)
+
   Addresses to exclude from the results.
+
+```ts {6}
+const userAnnouncements = await stealthClient.getAnnouncementsFroUser({
+  announcements,
+  spendingPublicKey,
+  viewingPrivateKey,
+  excludeList,
+  includeList
+})
+```
 
 ### includeList (optional)
 
-- **Type:** `EthAddress[]`
+- **Type:** [`EthAddress[]`](../glossary/types.md#ethaddress)
+
   Addresses to specifically include in the results.
+
+```ts {7}
+const userAnnouncements = await stealthClient.getAnnouncementsFroUser({
+  announcements,
+  spendingPublicKey,
+  viewingPrivateKey,
+  excludeList,
+  includeList
+})
+```

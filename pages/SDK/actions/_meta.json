@@ -1,5 +1,6 @@
 {
   "index": "Overview",
   "getAnnouncements": "getAnnouncements",
-  "getAnnouncementsForUser": "getAnnouncementsForUser"
+  "getAnnouncementsForUser": "getAnnouncementsForUser",
+  "getStealthMetaAddress": "getStealthMetaAddress"
 }
