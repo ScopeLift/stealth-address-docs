@@ -1,8 +1,8 @@
 import { Tabs } from 'nextra/components'
 
-# prepareRegisterKeys
+# prepareRegisterKeysOnBehalf
 
-Prepares the payload for registering a stealth meta-address (keys) in the ERC-6538 registry contract. 
+Prepares the payload for registering a stealth meta-address (keys) in the ERC-6538 registry contract on behalf of another account. 
 
 This function simulates the contract call to generate the necessary transaction payload without sending a transaction. 
 
@@ -15,10 +15,9 @@ The resulting payload can then be used for sending a transaction.
     ```ts
     import { stealthClient } from "./client";
 
-    const payload = await stealthClient.prepareRegisterKeys({
+    const payload = await stealthClient.prepareRegisterKeysOnBehalf({
       ERC6538Address,
-      schemeId,
-      stealthMetaAddress,
+      args,
       account,
     });
 
@@ -41,7 +40,7 @@ The resulting payload can then be used for sending a transaction.
 
 - **Type:** [`PreparePayload`](../glossary/types.md#preparepayload)
 
-  The prepared payload to send a transaction to the ERC-6538 contract and call `registerKeys` on the contract.
+  The prepared payload to send a transaction to the ERC-6538 contract and call `registerKeysOnBehalf` on the contract.
 
 ## Parameters
 
@@ -52,55 +51,39 @@ The resulting payload can then be used for sending a transaction.
   The address of the ERC-6538 Registry contract.
 
 ```ts {2}
-const payload = await stealthClient.prepareRegisterKeys({
+const payload = await stealthClient.prepareRegisterKeysOnBehalf({
   ERC6538Address,
-  schemeId,
-  stealthMetaAddress,
+  args,
   account,
 });
 ```
 
-### schemeId
+### args
 
-- **Type:** `bigint`
+- **Type:** [`RegisterKeysOnBehalfArgs`](../glossary/types.md#registerkeysonbehalfargs)
 
-  The ID of the stealth address scheme.
+  The arguments for registering the stealth meta address.
+
+  Includes the stealth meta address, scheme ID, the registrant's address, and the registrant's signature authorizing the registration.
 
 ```ts {3}
-const payload = await stealthClient.prepareRegisterKeys({
+const payload = await stealthClient.prepareRegisterKeysOnBehalf({
   ERC6538Address,
-  schemeId,
-  stealthMetaAddress,
-  account,
-});
-```
-
-### stealthMetaAddress
-
-- **Type:** [`HexString`](../glossary/types.md#hexstring)
-
-  The stealth meta address of the registrant.
-
-```ts {4}
-const payload = await stealthClient.prepareRegisterKeys({
-  ERC6538Address,
-  schemeId,
-  stealthMetaAddress,
+  args,
   account,
 });
 ```
 
 ### account
 
-- **Type:** [`EthAddress`](../glossary/types.md#ethaddress)
+- **Type:** [`HexString`](../glossary/types.md#hexstring)
 
   The address that will be used to send the transaction.
 
-```ts {5}
-const payload = await stealthClient.prepareRegisterKeys({
+```ts {4}
+const payload = await stealthClient.prepareRegisterKeysOnBehalf({
   ERC6538Address,
-  schemeId,
-  stealthMetaAddress,
+  args,
   account,
 });
 ```

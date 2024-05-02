@@ -4,5 +4,6 @@
   "getAnnouncementsForUser": "getAnnouncementsForUser",
   "getStealthMetaAddress": "getStealthMetaAddress",
   "prepareAnnounce": "prepareAnnounce",
-  "prepareRegisterKeys": "prepareRegisterKeys"
+  "prepareRegisterKeys": "prepareRegisterKeys",
+  "prepareRegisterKeysOnBehalf": "prepareRegisterKeysOnBehalf"
 }
