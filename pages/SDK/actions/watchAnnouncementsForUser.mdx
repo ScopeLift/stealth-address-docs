@@ -1,0 +1,200 @@
+import { Tabs } from 'nextra/components'
+
+# watchAnnouncementsForUser
+
+Watches for announcements relevant to the user.
+
+`checkStealthAddress` is used to determine if the announcement is intended for the specific user.
+
+## Usage
+
+<Tabs items={['example.ts', 'client.ts']} selectedIndex={0}>
+  <Tabs.Tab>
+    ```ts
+    import { stealthClient } from "./client";
+
+    const unwatch = await stealthClient.watchAnnouncementsForUser({
+      args,
+      spendingPublicKey,
+      viewingPrivateKey,
+      ERC5564Address,
+      excludeList,
+      includeList,
+      handleLogsForUser,
+      pollOptions,
+    });
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```ts
+    import { createStealthClient } from "@scopelift/stealth-address-sdk";
+
+    export const stealthClient = createStealthClient({
+      chainId,
+      rpcUrl,
+    });
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+## Return Value
+
+- **Type:** `function`
+
+    A function that can be called to stop watching for announcements.
+
+## Parameters
+
+### args
+
+- **Type:** [`AnnouncementArgs`](../glossary/types.md#announcementargs)
+
+    The arguments used to filter all announcements.
+    
+    Includes the scheme ID, stealth address, and caller.
+
+```ts {2}
+const unwatch = await stealthClient.watchAnnouncementsForUser({
+  args,
+  spendingPublicKey,
+  viewingPrivateKey,
+  ERC5564Address,
+  excludeList,
+  includeList,
+  handleLogsForUser,
+  pollOptions,
+});
+```
+
+### spendingPublicKey
+
+- **Type:** [`HexString`](../glossary/types.md#hexstring)
+
+  The spending public key of the user.
+
+```ts {3}
+const unwatch = await stealthClient.watchAnnouncementsForUser({
+  args,
+  spendingPublicKey,
+  viewingPrivateKey,
+  ERC5564Address,
+  excludeList,
+  includeList,
+  handleLogsForUser,
+  pollOptions,
+});
+```
+
+### viewingPrivateKey
+
+- **Type:** [`HexString`](../glossary/types.md#hexstring)
+
+    The viewing private key of the user.
+
+```ts {4}
+const unwatch = await stealthClient.watchAnnouncementsForUser({
+  args,
+  spendingPublicKey,
+  viewingPrivateKey,
+  ERC5564Address,
+  excludeList,
+  includeList,
+  handleLogsForUser,
+  pollOptions,
+});
+```
+
+### ERC5564Address
+
+- **Type:** [`HexString`](../glossary/types.md#hexstring)
+
+    The address of the `ERC5564Announcer` contract.
+
+```ts {5}
+const unwatch = await stealthClient.watchAnnouncementsForUser({
+  args,
+  spendingPublicKey,
+  viewingPrivateKey,
+  ERC5564Address,
+  excludeList,
+  includeList,
+  handleLogsForUser,
+  pollOptions,
+});
+```
+
+### excludeList (optional)
+
+- **Type:** [`EthAddress[]`](../glossary/types.md#ethaddress)
+
+    Addresses to exclude from the results.
+
+```ts {6}
+const unwatch = await stealthClient.watchAnnouncementsForUser({
+  args,
+  spendingPublicKey,
+  viewingPrivateKey,
+  ERC5564Address,
+  excludeList,
+  includeList,
+  handleLogsForUser,
+  pollOptions,
+});
+```
+
+### includeList (optional)
+
+- **Type:** [`EthAddress[]`](../glossary/types.md#ethaddress)
+
+    Addresses to include in the results.
+
+```ts {7}
+const unwatch = await stealthClient.watchAnnouncementsForUser({
+  args,
+  spendingPublicKey,
+  viewingPrivateKey,
+  ERC5564Address,
+  excludeList,
+  includeList,
+  handleLogsForUser,
+  pollOptions,
+});
+```
+
+### handleLogsForUser
+
+- **Type:** `function`
+
+    A function to transform relevant announcements.
+
+```ts {8}
+const unwatch = await stealthClient.watchAnnouncementsForUser({
+  args,
+  spendingPublicKey,
+  viewingPrivateKey,
+  ERC5564Address,
+  excludeList,
+  includeList,
+  handleLogsForUser,
+  pollOptions,
+});
+```
+
+### pollOptions
+
+- **Type:** [`WatchAnnouncementsForUserPollingOptions`](../glossary/types.md#watchannouncementsforuserpollingoptions)
+
+    Options for polling (watching) the contract.
+
+```ts {9}
+const unwatch = await stealthClient.watchAnnouncementsForUser({
+  args,
+  spendingPublicKey,
+  viewingPrivateKey,
+  ERC5564Address,
+  excludeList,
+  includeList,
+  handleLogsForUser,
+  pollOptions,
+});
+```
