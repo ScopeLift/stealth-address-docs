@@ -3,5 +3,6 @@
   "getAnnouncements": "getAnnouncements",
   "getAnnouncementsForUser": "getAnnouncementsForUser",
   "getStealthMetaAddress": "getStealthMetaAddress",
-  "prepareAnnounce": "prepareAnnounce"
+  "prepareAnnounce": "prepareAnnounce",
+  "prepareRegisterKeys": "prepareRegisterKeys"
 }
