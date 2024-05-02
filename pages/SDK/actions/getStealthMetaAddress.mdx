@@ -11,7 +11,7 @@ Retrieves a stealth meta-address from the ERC-6538 Registry contract.
     ```ts
     import { stealthClient } from "./client";
 
-    const stealthMetaAddress = await getStealthMetaAddress({
+    const stealthMetaAddress = await stealthClient.getStealthMetaAddress({
       ERC6538Address,
       registrant,
       schemeId
