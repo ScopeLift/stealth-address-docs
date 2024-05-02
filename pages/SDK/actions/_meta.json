@@ -2,5 +2,6 @@
   "index": "Overview",
   "getAnnouncements": "getAnnouncements",
   "getAnnouncementsForUser": "getAnnouncementsForUser",
-  "getStealthMetaAddress": "getStealthMetaAddress"
+  "getStealthMetaAddress": "getStealthMetaAddress",
+  "prepareAnnounce": "prepareAnnounce"
 }
