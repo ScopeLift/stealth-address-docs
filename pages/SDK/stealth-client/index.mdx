@@ -1,16 +1,18 @@
 # Stealth Client
 
-The stealth client provides a suite of actions that enable developers to handle various stealth address-related functionalities seamlessly. 
+The stealth client provides a suite of actions that enable developers to handle various stealth address-related functionalities seamlessly.
 
 Some example actions include:
 
 **Announcement handling**:
- - `getAnnouncements`: retrieves stealth address announcements emitted from the `ERC5564Announcer` contract
- - `watchAnnouncementsForUser`: monitors stealth transaction announcements for a specified user
+
+- `getAnnouncements`: retrieves stealth address announcements emitted from the `ERC5564Announcer` contract
+- `watchAnnouncementsForUser`: monitors stealth transaction announcements for a specified user
 
 **Contract interaction preparation**:
- - `prepareAnnounce`: prepares the payload to call the `announce` function on the `ERC5564Announcer` contract
- - `prepareRegisterKeys`: prepares the payload to call the `registerKeys` function call on the `ERC6538Registry` contract
+
+- `prepareAnnounce`: prepares the payload to call the `announce` function on the `ERC5564Announcer` contract
+- `prepareRegisterKeys`: prepares the payload to call the `registerKeys` function call on the `ERC6538Registry` contract
 
 ## Import
 
@@ -27,9 +29,8 @@ import { createStealthClient } from "@scopelift/stealth-address-sdk";
 
 const stealthClient = createStealthClient({
   chainId,
-  rpcUrl 
+  rpcUrl,
 });
-
 ```
 
 Then you can consume `StealthActions` from the `stealthClient` instance.
@@ -49,7 +50,7 @@ const announcements = await stealthClient.getAnnouncements(...args);
 ```ts {2}
 const stealthClient = createStealthClient({
   chainId,
-  rpcUrl 
+  rpcUrl,
 });
 ```
 
@@ -62,7 +63,6 @@ const stealthClient = createStealthClient({
 ```ts {3}
 const stealthClient = createStealthClient({
   chainId,
-  rpcUrl 
+  rpcUrl,
 });
 ```
-

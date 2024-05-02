@@ -1,6 +1,6 @@
 # Overview
 
-The SDK provides a suite of actions that enable developers to handle various stealth address-related functionalities seamlessly. 
+The SDK provides a suite of actions that enable developers to handle various stealth address-related functionalities seamlessly.
 
 These actions can be consumed from an initialized `stealthClient` instance:
 
@@ -9,7 +9,7 @@ import { createStealthClient } from "@scopelift/stealth-address-sdk";
 
 const stealthClient = createStealthClient({
   chainId,
-  rpcUrl 
+  rpcUrl,
 });
 
 const announcements = await stealthClient.getAnnouncements(...args);
@@ -22,6 +22,6 @@ import { getAnnouncements } from "@scopelift/stealth-address-sdk";
 
 const announcements = await getAnnouncements({
   clientParams: { chainId, rpcUrl },
-  ...args
+  ...args,
 });
 ```

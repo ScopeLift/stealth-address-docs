@@ -1,10 +1,10 @@
-import { Tabs } from 'nextra/components'
+import { Tabs } from "nextra/components";
 
 # prepareAnnounce
 
-Prepares the payload for announcing a stealth address from the ERC-5564 contract. 
+Prepares the payload for announcing a stealth address from the ERC-5564 contract.
 
-This function simulates the contract call to generate the necessary transaction payload without sending a transaction. 
+This function simulates the contract call to generate the necessary transaction payload without sending a transaction.
 
 The resulting payload can then be used for sending a transaction.
 
@@ -28,6 +28,7 @@ The resulting payload can then be used for sending a transaction.
 
     /* { account, data, to, value } */
     ```
+
   </Tabs.Tab>
   <Tabs.Tab>
     ```ts
@@ -38,6 +39,7 @@ The resulting payload can then be used for sending a transaction.
       rpcUrl,
     });
     ```
+
   </Tabs.Tab>
 </Tabs>
 
@@ -62,9 +64,9 @@ const payload = await prepareAnnounce({
     schemeId,
     stealthAddress,
     ephemeralPublicKey,
-    metadata
+    metadata,
   },
-  ERC5564Address
+  ERC5564Address,
 });
 ```
 
@@ -81,9 +83,9 @@ const payload = await prepareAnnounce({
     schemeId,
     stealthAddress,
     ephemeralPublicKey,
-    metadata
+    metadata,
   },
-  ERC5564Address
+  ERC5564Address,
 });
 ```
 
@@ -100,8 +102,8 @@ const payload = await prepareAnnounce({
     schemeId,
     stealthAddress,
     ephemeralPublicKey,
-    metadata
+    metadata,
   },
-  ERC5564Address
+  ERC5564Address,
 });
 ```

@@ -1,4 +1,4 @@
-import { Tabs } from 'nextra/components'
+import { Tabs } from "nextra/components";
 
 # getAnnouncements
 
@@ -31,6 +31,7 @@ Get announcement event logs from the `ERC5564Announcer` contract.
     ]
     */
     ```
+
   </Tabs.Tab>
   <Tabs.Tab>
     ```ts
@@ -41,6 +42,7 @@ Get announcement event logs from the `ERC5564Announcer` contract.
       rpcUrl,
     });
     ```
+
   </Tabs.Tab>
 </Tabs>
 
@@ -48,7 +50,7 @@ Get announcement event logs from the `ERC5564Announcer` contract.
 
 - **Type:** [`GetAnnouncementsReturnType`](../glossary/types.md#getannouncementsreturntype)
 
-    An array of `Announce` event log data emitted from the `ERC5564Announcer` contract.
+  An array of `Announce` event log data emitted from the `ERC5564Announcer` contract.
 
 ## Parameters
 
@@ -63,8 +65,8 @@ const announcements = await stealthClient.getAnnouncements({
   ERC5564Address,
   args,
   fromBlock,
-  toBlock
-})
+  toBlock,
+});
 ```
 
 ### args
@@ -78,8 +80,8 @@ const announcements = await stealthClient.getAnnouncements({
   ERC5564Address,
   args,
   fromBlock,
-  toBlock
-})
+  toBlock,
+});
 ```
 
 ### fromBlock
@@ -93,8 +95,8 @@ const announcements = await stealthClient.getAnnouncements({
   ERC5564Address,
   args,
   fromBlock,
-  toBlock
-})
+  toBlock,
+});
 ```
 
 ### toBlock
@@ -108,6 +110,6 @@ const announcements = await stealthClient.getAnnouncements({
   ERC5564Address,
   args,
   fromBlock,
-  toBlock
-})
+  toBlock,
+});
 ```

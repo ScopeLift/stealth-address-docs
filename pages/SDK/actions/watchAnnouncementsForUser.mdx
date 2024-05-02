@@ -1,4 +1,4 @@
-import { Tabs } from 'nextra/components'
+import { Tabs } from "nextra/components";
 
 # watchAnnouncementsForUser
 
@@ -24,6 +24,7 @@ Watches for announcements relevant to the user.
       pollOptions,
     });
     ```
+
   </Tabs.Tab>
   <Tabs.Tab>
     ```ts
@@ -34,6 +35,7 @@ Watches for announcements relevant to the user.
       rpcUrl,
     });
     ```
+
   </Tabs.Tab>
 </Tabs>
 
@@ -41,7 +43,7 @@ Watches for announcements relevant to the user.
 
 - **Type:** `function`
 
-    A function that can be called to stop watching for announcements.
+  A function that can be called to stop watching for announcements.
 
 ## Parameters
 
@@ -49,9 +51,9 @@ Watches for announcements relevant to the user.
 
 - **Type:** [`AnnouncementArgs`](../glossary/types.md#announcementargs)
 
-    The arguments used to filter all announcements.
-    
-    Includes the scheme ID, stealth address, and caller.
+  The arguments used to filter all announcements.
+
+  Includes the scheme ID, stealth address, and caller.
 
 ```ts {2}
 const unwatch = await stealthClient.watchAnnouncementsForUser({
@@ -89,7 +91,7 @@ const unwatch = await stealthClient.watchAnnouncementsForUser({
 
 - **Type:** [`HexString`](../glossary/types.md#hexstring)
 
-    The viewing private key of the user.
+  The viewing private key of the user.
 
 ```ts {4}
 const unwatch = await stealthClient.watchAnnouncementsForUser({
@@ -108,7 +110,7 @@ const unwatch = await stealthClient.watchAnnouncementsForUser({
 
 - **Type:** [`HexString`](../glossary/types.md#hexstring)
 
-    The address of the `ERC5564Announcer` contract.
+  The address of the `ERC5564Announcer` contract.
 
 ```ts {5}
 const unwatch = await stealthClient.watchAnnouncementsForUser({
@@ -127,7 +129,7 @@ const unwatch = await stealthClient.watchAnnouncementsForUser({
 
 - **Type:** [`EthAddress[]`](../glossary/types.md#ethaddress)
 
-    Addresses to exclude from the results.
+  Addresses to exclude from the results.
 
 ```ts {6}
 const unwatch = await stealthClient.watchAnnouncementsForUser({
@@ -146,7 +148,7 @@ const unwatch = await stealthClient.watchAnnouncementsForUser({
 
 - **Type:** [`EthAddress[]`](../glossary/types.md#ethaddress)
 
-    Addresses to include in the results.
+  Addresses to include in the results.
 
 ```ts {7}
 const unwatch = await stealthClient.watchAnnouncementsForUser({
@@ -165,7 +167,7 @@ const unwatch = await stealthClient.watchAnnouncementsForUser({
 
 - **Type:** `function`
 
-    A function to transform relevant announcements.
+  A function to transform relevant announcements.
 
 ```ts {8}
 const unwatch = await stealthClient.watchAnnouncementsForUser({
@@ -184,7 +186,7 @@ const unwatch = await stealthClient.watchAnnouncementsForUser({
 
 - **Type:** [`WatchAnnouncementsForUserPollingOptions`](../glossary/types.md#watchannouncementsforuserpollingoptions)
 
-    Options for polling (watching) the contract.
+  Options for polling (watching) the contract.
 
 ```ts {9}
 const unwatch = await stealthClient.watchAnnouncementsForUser({

@@ -1,4 +1,4 @@
-import { Tabs } from 'nextra/components'
+import { Tabs } from "nextra/components";
 
 # getStealthMetaAddress
 
@@ -19,6 +19,7 @@ Retrieves a stealth meta-address from the ERC-6538 Registry contract.
 
     // '0x...'
     ```
+
   </Tabs.Tab>
   <Tabs.Tab>
     ```ts
@@ -29,12 +30,13 @@ Retrieves a stealth meta-address from the ERC-6538 Registry contract.
       rpcUrl,
     });
     ```
+
   </Tabs.Tab>
 </Tabs>
 
 ## Return Value
 
-- **Type:** [`HexString`](../glossary/types.md#hexstring) 
+- **Type:** [`HexString`](../glossary/types.md#hexstring)
 
   The stealth meta address of the registrant.
 
@@ -50,8 +52,8 @@ Retrieves a stealth meta-address from the ERC-6538 Registry contract.
 const stealthMetaAddress = await stealthClient.getStealthMetaAddress({
   ERC6538Address,
   registrant,
-  schemeId
-})
+  schemeId,
+});
 ```
 
 ### registrant
@@ -64,8 +66,8 @@ const stealthMetaAddress = await stealthClient.getStealthMetaAddress({
 const stealthMetaAddress = await stealthClient.getStealthMetaAddress({
   ERC6538Address,
   registrant,
-  schemeId
-})
+  schemeId,
+});
 ```
 
 ### schemeId
@@ -78,6 +80,6 @@ const stealthMetaAddress = await stealthClient.getStealthMetaAddress({
 const stealthMetaAddress = await stealthClient.getStealthMetaAddress({
   ERC6538Address,
   registrant,
-  schemeId
-})
+  schemeId,
+});
 ```
