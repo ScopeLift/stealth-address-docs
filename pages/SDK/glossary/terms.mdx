@@ -1,4 +1,4 @@
-import {Callout} from 'nextra/components'
+import { Callout } from "nextra/components";
 
 # Terms
 
@@ -18,11 +18,11 @@ It is composed of:
 
 - **spending key**
 
-    A private key that can be used to spend funds sent to a stealth address. A “spending public key” is the corresponding public key.
+  A private key that can be used to spend funds sent to a stealth address. A “spending public key” is the corresponding public key.
 
 - **viewing key**
 
-    A private key that can be used to determine if funds sent to a stealth address belong to the recipient who controls the corresponding spending key. A “viewing public key” is the corresponding public key.
+  A private key that can be used to determine if funds sent to a stealth address belong to the recipient who controls the corresponding spending key. A “viewing public key” is the corresponding public key.
 
 [Learn more](https://eips.ethereum.org/EIPS/eip-5564)
 
@@ -34,8 +34,9 @@ The implementation of the methods `generateStealthAddress`, `checkStealthAddress
 
 The first implementation, with `schemeId` of `1` uses SECP256k1 elliptic curve cryptography.
 
-<Callout type='info'>
-This SDK conforms to the `schemeId` `1` specification laid out in [ERC-5564](https://eips.ethereum.org/EIPS/eip-5564). 
+<Callout type="info">
+  This SDK conforms to the `schemeId` `1` specification laid out in
+  [ERC-5564](https://eips.ethereum.org/EIPS/eip-5564).
 </Callout>
 
 ## Stealth Key
