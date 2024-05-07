@@ -2,21 +2,11 @@
 
 Glossary of types in the Stealth Address SDK.
 
-    ## `HexString`
-    Signifies any length hexadecimal string, synonymous with `0x${string}`
-
-    ## `VALID_SCHEME_ID`
-    ```ts
-    export enum VALID_SCHEME_ID {
-      SCHEME_ID_1 = 1
-    }
-    ```
-    Signifies a valid scheme id; the only valid scheme id is currently `1`.
-
     ## `Announce`
+
     The event emitted from the `announce` function call on the ERC-5564 contract.
 
-    This is an informational solidity event definition and isn't an actual type provided in the SDK.
+    This is an informational Solidity event definition and isn't an actual type provided in the SDK.
 
     ```solidity
     event Announcement(
@@ -28,5 +18,89 @@ Glossary of types in the Stealth Address SDK.
     );
     ```
 
+    ## `AnnouncementArgs`
+
+    The arguments used to announce a stealth address.
+
+    [See Type](https://github.com/ScopeLift/stealth-address-sdk/blob/main/src/lib/actions/getAnnouncements/types.ts#L6)
+
+    ## `AnnouncementLog`
+
+    The log data associated with the `Announce` event.
+
+    [See Type](https://github.com/ScopeLift/stealth-address-sdk/blob/main/src/lib/actions/getAnnouncements/types.ts#L12)
+
+    ## `BlockType`
+
+    A block number as `bigint` or block tag.
+
+    ```ts
+    bigint | "latest" | "earliest" | "pending" | "safe" | "finalized";
+    ```
+
+    ## `clientParams`
+
+    When passing in the `clientParams` object to an action, the following properties are required:
+
+    - `chainId`: The [chain ID](/#valid_chain_ids) of the network.
+    - `rpcUrl`: The RPC URL of the network.
+
     ## `EthAddress`
+
     Represents an Ethereum address.
+
+    ## `GetAnnouncementsForUserReturnType`
+
+    The return type of the `getAnnouncementsForUser` action, which is an array of announcements relevant to the specified user.
+
+    [See Type](https://github.com/ScopeLift/stealth-address-sdk/blob/main/src/lib/actions/getAnnouncementsForUser/types.ts#L14)
+
+    ## `GetAnnouncementsReturnType`
+
+    The return type of the `getAnnouncements` action, which is an array of `Announce` event log data emitted from the `ERC5564Announcer` contract.
+
+    [See Type](https://github.com/ScopeLift/stealth-address-sdk/blob/main/src/lib/actions/getAnnouncements/types.ts#L27)
+
+    ## `HexString`
+
+    Signifies any length hexadecimal string, synonymous with `0x${string}`
+
+    ## `PrepareAnnounceArgs`
+
+    The arguments used to prepare an announcement.
+
+    [See Type](https://github.com/ScopeLift/stealth-address-sdk/blob/main/src/lib/actions/prepareAnnounce/types.ts#L14)
+
+    ## `PreparePayload`
+
+    The prepared payload to send a transaction. This is the return type of the `prepare`-prefixed actions.
+
+    [See Type](https://github.com/ScopeLift/stealth-address-sdk/blob/main/src/lib/actions/types.ts#L9)
+
+    ## `RegisterKeysOnBehalfArgs`
+
+    The arguments used to register a stealth meta-address (keys) on behalf of a user.
+
+    [See Type](https://github.com/ScopeLift/stealth-address-sdk/blob/main/src/lib/actions/prepareRegisterKeysOnBehalf/types.ts#L5)
+
+    ## `VALID_CHAIN_IDS`
+
+    Valid chain IDs for the SDK.
+
+    A valid chain id has deployed `ERC5564Announcer` and `ERC6538Registry` contracts.
+
+    ## `VALID_SCHEME_ID`
+
+    ```ts
+    export enum VALID_SCHEME_ID {
+      SCHEME_ID_1 = 1,
+    }
+    ```
+
+    Signifies a valid scheme id; the only valid scheme id is currently `1`.
+
+    ## `WatchAnnouncementsForUserPollingOptions`
+
+    The polling options used to watch for announcements relevant to the user.
+
+    [See Type](https://github.com/ScopeLift/stealth-address-sdk/blob/main/src/lib/actions/watchAnnouncementsForUser/types.ts#L13)

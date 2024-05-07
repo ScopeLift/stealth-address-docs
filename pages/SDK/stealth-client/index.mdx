@@ -1,0 +1,68 @@
+# Stealth Client
+
+The stealth client provides a suite of actions that enable developers to handle various stealth address-related functionalities seamlessly.
+
+Some example actions include:
+
+**Announcement handling**:
+
+- `getAnnouncements`: retrieves stealth address announcements emitted from the `ERC5564Announcer` contract
+- `watchAnnouncementsForUser`: monitors stealth transaction announcements for a specified user
+
+**Contract interaction preparation**:
+
+- `prepareAnnounce`: prepares the payload to call the `announce` function on the `ERC5564Announcer` contract
+- `prepareRegisterKeys`: prepares the payload to call the `registerKeys` function call on the `ERC6538Registry` contract
+
+## Import
+
+```ts
+import { createStealthClient } from "@scopelift/stealth-address-sdk";
+```
+
+## Usage
+
+Initialize a Stealth Client with your desired Chain ID (e.g. 1 for Ethereum) and RPC URL.
+
+```ts
+import { createStealthClient } from "@scopelift/stealth-address-sdk";
+
+const stealthClient = createStealthClient({
+  chainId,
+  rpcUrl,
+});
+```
+
+Then you can consume `StealthActions` from the `stealthClient` instance.
+
+```ts
+const announcements = await stealthClient.getAnnouncements(...args);
+```
+
+## Parameters
+
+### chainId
+
+- **Type:** [`VALID_CHAIN_IDS`](../glossary/types.md#valid_chain_ids)
+
+  The ephemeral public key from the announcement.
+
+```ts {2}
+const stealthClient = createStealthClient({
+  chainId,
+  rpcUrl,
+});
+```
+
+### rpcUrl
+
+- **Type:** `string`
+
+  The RPC URL of the network that corresponds to the provided `chainId`.
+
+```ts {3}
+const stealthClient = createStealthClient({
+  chainId,
+  rpcUrl,
+});
+```
