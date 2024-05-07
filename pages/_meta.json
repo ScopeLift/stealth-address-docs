@@ -4,7 +4,7 @@
   "SDK": "SDK",
   "FAQ": "FAQ",
   "examples": {
-    "title": "Examples",
+    "title": "SDK Examples",
     "type": "page",
     "href": "https://github.com/ScopeLift/stealth-address-sdk/tree/main/examples",
     "newWindow": true
