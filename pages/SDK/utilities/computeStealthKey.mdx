@@ -1,0 +1,95 @@
+import { Tabs } from "nextra/components";
+
+# computeStealthKey
+
+Computes the stealth address private key by combining the spending private key with a hashed shared secret, which is derived from an ephemeral public key and a viewing private key.
+
+## Import
+
+```ts
+import { computeStealthKey } from "@scopelift/stealth-address-sdk";
+```
+
+## Usage
+
+<Tabs items={['example.ts']} selectedIndex={0}>
+  <Tabs.Tab>
+    ```ts
+    import { computeStealthKey } from "@scopelift/stealth-address-sdk";
+
+    const stealthPrivateKey = computeStealthKey({
+      ephemeralPublicKey,
+      schemeId: 1,
+      spendingPrivateKey,
+      viewingPrivateKey
+    });
+
+    // "0x..."
+    ```
+
+  </Tabs.Tab>
+</Tabs>
+
+## Return Value
+
+[`HexString`](../glossary/types.md#hexstring)
+
+The computed stealth address private key.
+
+## Parameters
+
+### ephemeralPublicKey
+
+- **Type:** [`HexString`](../glossary/types.md#hexstring)
+  The ephemeral public key returned from calling the [`generateStealthAddress`](./generateStealthAddress.mdx) function or emitted from the [`Announce`](../glossary/types.mdx#announce) event.
+
+```ts {2}
+const stealthPrivateKey = computeStealthKey({
+  ephemeralPublicKey: "0x...",
+  schemeId: 1,
+  spendingPrivateKey: "0x...",
+  viewingPrivateKey: "0x...",
+});
+```
+
+### schemeId
+
+- **Type:** [`VALID_SCHEME_ID`](../glossary/types.mdx#valid_scheme_id)
+  The scheme id used to generate the stealth address.
+
+```ts {3}
+const stealthPrivateKey = computeStealthKey({
+  ephemeralPublicKey: "0x...",
+  schemeId: 1,
+  spendingPrivateKey: "0x...",
+  viewingPrivateKey: "0x...",
+});
+```
+
+### spendingPrivateKey
+
+- **Type:** [`HexString`](../glossary/types.md#hexstring)
+  The spending private key used to generate the stealth meta-address.
+
+```ts {4}
+const stealthPrivateKey = computeStealthKey({
+  ephemeralPublicKey: "0x...",
+  schemeId: 1,
+  spendingPrivateKey: "0x...",
+  viewingPrivateKey: "0x...",
+});
+```
+
+### viewingPrivateKey
+
+- **Type:** [`HexString`](../glossary/types.md#hexstring)
+  The viewing private key used to generate the stealth meta-address.
+
+```ts {5}
+const stealthPrivateKey = computeStealthKey({
+  ephemeralPublicKey: "0x...",
+  schemeId: 1,
+  spendingPrivateKey: "0x...",
+  viewingPrivateKey: "0x...",
+});
+```

@@ -1,0 +1,28 @@
+## Getting Started
+
+This guide will walk you through the installation and basic usage of the Stealth Address SDK, setting you up to integrate stealth transaction capabilities into your Ethereum-based applications.
+
+### Installation
+
+```sh npm2yarn
+npm i @scopelift/stealth-address-sdk
+```
+
+### Basic Usage
+
+Generate a stealth address using the SDK, assuming you have a stealth meta-address (more info in further sections):
+
+```ts
+import { generateStealthAddress } from "@scopelift/stealth-address-sdk";
+
+// The stealth meta-address URI Follows the format: "st:<chain>:<stealthMetaAddress>", where <chain> is the chain identifier (https://eips.ethereum.org/EIPS/eip-3770#examples) and <stealthMetaAddress> is the stealth meta-address.
+// You can also use the stealth meta-address directly, without the URI prefix.
+const stealthMetaAddressURI = "...";
+
+// Generate a stealth address using the default scheme (1)
+// To learn more about the initial implementation scheme using SECP256k1, please see the reference here (https://eips.ethereum.org/EIPS/eip-5564)
+const result = generateStealthAddress({ stealthMetaAddressURI });
+
+// Use the stealth address
+console.log(result.stealthAddress);
+```

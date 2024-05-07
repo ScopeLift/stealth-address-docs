@@ -1,0 +1,32 @@
+# Types
+
+Glossary of types in the Stealth Address SDK.
+
+    ## `HexString`
+    Signifies any length hexadecimal string, synonymous with `0x${string}`
+
+    ## `VALID_SCHEME_ID`
+    ```ts
+    export enum VALID_SCHEME_ID {
+      SCHEME_ID_1 = 1
+    }
+    ```
+    Signifies a valid scheme id; the only valid scheme id is currently `1`.
+
+    ## `Announce`
+    The event emitted from the `announce` function call on the ERC-5564 contract.
+
+    This is an informational solidity event definition and isn't an actual type provided in the SDK.
+
+    ```solidity
+    event Announcement(
+      uint256 indexed schemeId,
+      address indexed stealthAddress,
+      address indexed caller,
+      bytes ephemeralPubKey,
+      bytes metadata
+    );
+    ```
+
+    ## `EthAddress`
+    Represents an Ethereum address.
