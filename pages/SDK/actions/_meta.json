@@ -1,0 +1,10 @@
+{
+  "index": "Overview",
+  "getAnnouncements": "getAnnouncements",
+  "getAnnouncementsForUser": "getAnnouncementsForUser",
+  "getStealthMetaAddress": "getStealthMetaAddress",
+  "prepareAnnounce": "prepareAnnounce",
+  "prepareRegisterKeys": "prepareRegisterKeys",
+  "prepareRegisterKeysOnBehalf": "prepareRegisterKeysOnBehalf",
+  "watchAnnouncementsForUser": "watchAnnouncementsForUser"
+}
