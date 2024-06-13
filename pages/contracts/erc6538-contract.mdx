@@ -1,0 +1,154 @@
+# ERC6538Registry.sol
+
+## Overview
+
+The `ERC6538Registry` contract is designed to map accounts to their stealth meta-addresses. This mapping is done according to the [ERC-6538](https://eips.ethereum.org/EIPS/eip-6538) standard. The contract provides functionalities to register, update, and verify stealth meta-addresses. Additionally, it ensures the security and integrity of these registrations through the use of nonces and signatures.
+
+### Code: [`ERC6538Registry.sol`](https://github.com/ScopeLift/stealth-address-erc-contracts/blob/b6f7d989b6247f81ceede5d1be2ffb23c1cb39b5/src/ERC6538Registry.sol)
+
+## Events
+
+### StealthMetaAddressSet
+
+The `StealthMetaAddressSet` event is emitted when a registrant updates their stealth meta-address.
+
+- **registrant** (`address`): The account that the registered the stealth meta-address belongs to.
+- **schemeId** (`uint256`): Identifier corresponding to the applied stealth address scheme (e.g., `1` for `secp256k1` as specified in [ERC-5564](https://eips.ethereum.org/EIPS/eip-5564)).
+- **stealthMetaAddress** (`bytes`): The stealth meta-address. Based on [ERC-5564](https://eips.ethereum.org/EIPS/eip-5564).
+
+#### Event Signature
+
+```solidity
+event StealthMetaAddressSet(
+  address indexed registrant, uint256 indexed schemeId, bytes stealthMetaAddress
+);
+```
+
+### NonceIncremented
+
+The `NonceIncremented` event is emitted when a registrant increments their nonce to invalidate existing signatures.
+
+- **registrant** (`address`): The account that incremented its nonce.
+- **newNonce** (`uint256`): The new nonce value.
+
+#### Event Signature
+
+```solidity
+event NonceIncremented(address indexed registrant, uint256 newNonce);
+```
+
+## Errors
+
+### ERC6538Registry\_\_InvalidSignature
+
+This error is thrown when the signature provided to the `registerKeysOnBehalf` function is invalid.
+
+#### Error Signature
+
+```solidity
+error ERC6538Registry__InvalidSignature();
+```
+
+## Functions
+
+### registerKeys
+
+The `registerKeys` function allows the caller to set their stealth meta-address for a given scheme ID.
+
+- **schemeId** (`uint256`): Identifier corresponding to the applied stealth address scheme.
+- **stealthMetaAddress** (`bytes`): The stealth meta-address to register.
+
+#### Function Signature
+
+```solidity
+function registerKeys(uint256 schemeId, bytes calldata stealthMetaAddress) external
+```
+
+#### Usage
+
+```solidity
+contract MyContract {
+    ERC6538Registry public registry;
+
+    constructor(address registryAddress) {
+        registry = ERC6538Registry(registryAddress);
+    }
+
+    function myRegisterFunction(uint256 _schemeId, bytes calldata _stealthMetaAddress) public {
+        registry.registerKeys(_schemeId, _stealthMetaAddress);
+    }
+}
+```
+
+### registerKeysOnBehalf
+
+The `registerKeysOnBehalf` function allows an external party to set the stealth meta-address of another registrant, provided a valid signature.
+
+- **registrant** (`address`): Address of the registrant.
+- **schemeId** (`uint256`): Identifier corresponding to the applied stealth address scheme.
+- **signature** (`bytes`): A signature from the registrant authorizing the registration.
+- **stealthMetaAddress** (`bytes`): The stealth meta-address to register.
+
+#### Function Signature
+
+```solidity
+function registerKeysOnBehalf(
+  address registrant,
+  uint256 schemeId,
+  bytes memory signature,
+  bytes calldata stealthMetaAddress
+) external
+```
+
+### incrementNonce
+
+The `incrementNonce` function increments the nonce of the sender to invalidate existing signatures.
+
+#### Function Signature
+
+```solidity
+function incrementNonce() external
+```
+
+#### Usage
+
+```solidity
+contract MyContract {
+    ERC6538Registry public registry;
+
+    constructor(address registryAddress) {
+        registry = ERC6538Registry(registryAddress);
+    }
+
+    function myIncrementNonceFunction() public {
+        registry.incrementNonce();
+    }
+}
+```
+
+### DOMAIN_SEPARATOR
+
+The `DOMAIN_SEPARATOR` function returns the domain separator used in this contract. It re-computes the domain separator if there's a chain fork.
+
+#### Function Signature
+
+```solidity
+function DOMAIN_SEPARATOR() public view returns (bytes32)
+```
+
+## Internal Functions
+
+### \_computeDomainSeparator
+
+The `_computeDomainSeparator` function computes the domain separator for this contract.
+
+#### Function Signature
+
+```solidity
+function _computeDomainSeparator() internal view returns (bytes32)
+```
+
+## Related Links
+
+- [ERC-6538](https://eips.ethereum.org/EIPS/eip-6538)
+- [ERC-5564](https://eips.ethereum.org/EIPS/eip-5564)
