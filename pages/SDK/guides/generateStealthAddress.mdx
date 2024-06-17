@@ -1,27 +1,26 @@
-import { Callout } from 'nextra/components';
+import { Callout } from "nextra/components";
 
 # Generate a Stealth Address
 
-This guide will walk you through the process of generating a stealth address using the Stealth Address SDK. 
+This guide will walk you through the process of generating a stealth address using the Stealth Address SDK.
 
-Stealth addresses provide a layer of privacy for transactions by allowing users to receive funds where only the sender and receiver know each other's addresses. 
-
+Stealth addresses provide a layer of privacy for transactions by allowing users to receive funds where only the sender and receiver know each other's addresses.
 
 ## Understanding Key Terms
 
 Before we begin, let's clarify some key terms used in this guide:
 
-- [**Stealth Meta-Address**](../glossary/terms#stealth-meta-address): 
+- [**Stealth Meta-Address**](../glossary/terms#stealth-meta-address):
 
 A stealth meta-address is a set of one or two public keys that can be used to compute a stealth address for a given recipient.
 
 It is composed of two keys:
 
-  - **Spending Key**: A private key that can be used to spend funds sent to a stealth address. A “spending public key” is the corresponding public key.
-  - **Viewing Key**: A private key that can be used to determine if funds sent to a stealth address belong to the recipient who controls the corresponding spending key. A “viewing public key” is the corresponding public key.
+- **Spending Key**: A private key that can be used to spend funds sent to a stealth address. A “spending public key” is the corresponding public key.
+- **Viewing Key**: A private key that can be used to determine if funds sent to a stealth address belong to the recipient who controls the corresponding spending key. A “viewing public key” is the corresponding public key.
 
 <Callout>
-In most cases you will be using a stealth meta-address comprised of both spending and viewing keys because it allows more flexibility. 
+In most cases you will be using a stealth meta-address comprised of both spending and viewing keys because it allows more flexibility.
 
 However, you can also use a stealth meta-address with only one key, where that key serves as both the spending and viewing keys.
 
@@ -30,8 +29,9 @@ However, you can also use a stealth meta-address with only one key, where that k
 The below shows an actual stealth meta-address.
 
 ```ts
-const stealthMetaAddress = '0x<spendingPublicKey><viewingPublicKey>'
-const actualStealthMetaAddress = '0x039ef4e53007edbad22f47fccee6418e614a3cf6eed6c32e3c8aa5d27ba8c998a603ce919c78ba18683f979a3ec179d15cf742470735b935863da2b73d162d087398'
+const stealthMetaAddress = "0x<spendingPublicKey><viewingPublicKey>";
+const actualStealthMetaAddress =
+  "0x039ef4e53007edbad22f47fccee6418e614a3cf6eed6c32e3c8aa5d27ba8c998a603ce919c78ba18683f979a3ec179d15cf742470735b935863da2b73d162d087398";
 ```
 
 - [**Stealth Address**](../glossary/terms#stealth-address): A <i>brand new address</i> generated from the stealth meta-address.
@@ -50,17 +50,18 @@ One way to generate a stealth meta-address is to have the user sign a message, a
 
 The below code snippet demonstrates how to generate a stealth meta-address from a signature, which does the signature parsing in the background.
 
-<Callout type='info'>
-    The example below assumes a `signMessage` method from a wallet client.
-    Please use the appropriate method from your wallet client to sign a message.
+<Callout type="info">
+  The example below assumes a `signMessage` method from a wallet client. Please
+  use the appropriate method from your wallet client to sign a message.
 </Callout>
 
-<Callout type='warning'>
-    The message used for the signature should very clearly communicate to the user what they are signing and why.
+<Callout type="warning">
+  The message used for the signature should very clearly communicate to the user
+  what they are signing and why.
 </Callout>
 
 ```ts copy
-import { generateStealthMetaAddressFromSignature } from '@scopelift/stealth-address-sdk';
+import { generateStealthMetaAddressFromSignature } from "@scopelift/stealth-address-sdk";
 
 const signMessage = async () => {
   // An example message to sign for generating the stealth meta-address
@@ -68,11 +69,11 @@ const signMessage = async () => {
   // The message that is signed should clearly communicate to the user what they are signing and why
   const MESSAGE_TO_SIGN = `Generate Stealth Meta-Address on ${chain.id} chain`;
 
-  if (!account) throw new Error('A connected account is required');
+  if (!account) throw new Error("A connected account is required");
 
   const signature = await walletClient.signMessage({
     account,
-    message: MESSAGE_TO_SIGN
+    message: MESSAGE_TO_SIGN,
   });
 
   return signature;
@@ -83,7 +84,7 @@ const handleSignAndGenStealthMetaAddress = async () => {
   const stealthMetaAddress = generateStealthMetaAddressFromSignature(signature);
 };
 
-const stealthMetaAddress = await handleSignAndGenStealthMetaAddress()
+const stealthMetaAddress = await handleSignAndGenStealthMetaAddress();
 ```
 
 ## Step 2: Generate a Stealth Address
@@ -91,7 +92,7 @@ const stealthMetaAddress = await handleSignAndGenStealthMetaAddress()
 Once you have the stealth meta-address, you can use it to generate the actual stealth address.
 
 ```ts copy
-import { generateStealthAddress } from '@scopelift/stealth-address-sdk';
+import { generateStealthAddress } from "@scopelift/stealth-address-sdk";
 
 const stealthAddress = generateStealthAddress({
   stealthmetaAddressURI: stealthMetaAddress,
