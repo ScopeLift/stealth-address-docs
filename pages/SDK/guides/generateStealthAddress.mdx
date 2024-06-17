@@ -32,7 +32,6 @@ The below shows an actual stealth meta-address.
 ```ts
 const stealthMetaAddress = '0x<spendingPublicKey><viewingPublicKey>'
 const actualStealthMetaAddress = '0x039ef4e53007edbad22f47fccee6418e614a3cf6eed6c32e3c8aa5d27ba8c998a603ce919c78ba18683f979a3ec179d15cf742470735b935863da2b73d162d087398'
-
 ```
 
 - [**Stealth Address**](../glossary/terms#stealth-address): A <i>brand new address</i> generated from the stealth meta-address.
@@ -60,7 +59,7 @@ The below code snippet demonstrates how to generate a stealth meta-address from 
     The message used for the signature should very clearly communicate to the user what they are signing and why.
 </Callout>
 
-```ts
+```ts copy
 import { generateStealthMetaAddressFromSignature } from '@scopelift/stealth-address-sdk';
 
 const signMessage = async () => {
@@ -91,7 +90,7 @@ const stealthMetaAddress = await handleSignAndGenStealthMetaAddress()
 
 Once you have the stealth meta-address, you can use it to generate the actual stealth address.
 
-```ts
+```ts copy
 import { generateStealthAddress } from '@scopelift/stealth-address-sdk';
 
 const stealthAddress = generateStealthAddress({
