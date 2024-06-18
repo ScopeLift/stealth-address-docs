@@ -10,7 +10,7 @@ The `ERC5564Announcer` contract is designed to facilitate the broadcasting of tr
 
 ### Announcement
 
-The `Announcement` event is emitted to when the `announce` function is called. Here are the key components of this event:
+The `Announcement` event is emitted when the `announce` function is called. Here are the key components of this event:
 
 - **schemeId** (`uint256`): Identifier corresponding to the applied stealth address scheme (e.g., `1` for `secp256k1` as specified in [ERC-5564](https://eips.ethereum.org/EIPS/eip-5564)).
 - **stealthAddress** (`address`): The computed stealth address for the recipient.
@@ -52,7 +52,7 @@ function announce(
 ) external
 ```
 
-### Description
+#### Description
 
 When called, this function emits the `Announcement` event with all the parameters supplied to it.
 
