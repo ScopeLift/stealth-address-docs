@@ -1,0 +1,199 @@
+import { Callout } from "nextra/components";
+
+# Register a Stealth Meta-Address
+
+This guide will walk you through the process of registering a stealth meta-address using the Stealth Address SDK.
+
+## Understanding Key Terms
+
+Before we begin, let's clarify some key terms used in this guide:
+
+- [**Stealth Meta-Address**](../glossary/terms#stealth-meta-address):
+
+A stealth meta-address is a set of one or two public keys that can be used to compute a stealth address for a given recipient.
+
+It is composed of two keys:
+
+- **Spending Key**: A private key that can be used to spend funds sent to a stealth address. A “spending public key” is the corresponding public key.
+- **Viewing Key**: A private key that can be used to determine if funds sent to a stealth address belong to the recipient who controls the corresponding spending key. A “viewing public key” is the corresponding public key.
+
+## Step 1: Generate a Stealth Meta-Address
+
+To **register** a **stealth meta-address** we first need to **generate** a **stealth meta-address**.
+
+Here are some things to consider when generating a stealth meta-address:
+
+1. The stealth meta-address should be deterministic in most cases (should be able to be regenerated using the same parameters).
+
+2. The stealth meta-address should be set in the [ERC-6538](https://eips.ethereum.org/EIPS/eip-6538) contract to allow for easy lookups for future stealth address transactions. [Learn more]().
+
+One way to generate a stealth meta-address is to have the user sign a message, and then parse the signature to create spending/viewing keys, and combine them.
+
+The below code snippet demonstrates how to generate a stealth meta-address from a signature, which does the signature parsing in the background.
+
+<Callout type="info">
+  The example below assumes a `signMessage` method from a wallet client. Please
+  use the appropriate method from your wallet client to sign a message.
+</Callout>
+
+<Callout type="warning">
+  The message used for the signature should very clearly communicate to the user
+  what they are signing and why.
+</Callout>
+
+```ts copy
+import { generateStealthMetaAddressFromSignature } from "@scopelift/stealth-address-sdk";
+
+const signMessage = async () => {
+  // An example message to sign for generating the stealth meta-address
+  // Usually this message includes the chain id to mitigate replay attacks across different chains
+  // The message that is signed should clearly communicate to the user what they are signing and why
+  const MESSAGE_TO_SIGN = `Generate Stealth Meta-Address on ${chain.id} chain`;
+
+  if (!account) throw new Error("A connected account is required");
+
+  const signature = await walletClient.signMessage({
+    account,
+    message: MESSAGE_TO_SIGN,
+  });
+
+  return signature;
+};
+
+const handleSignAndGenStealthMetaAddress = async () => {
+  const signature = await signMessage();
+  const stealthMetaAddress = generateStealthMetaAddressFromSignature(signature);
+};
+
+const stealthMetaAddress = await handleSignAndGenStealthMetaAddress();
+```
+
+## Step 2: Register the Stealth Meta-Address
+
+Once you have generated the stealth meta-address, you can use the SDK to **prepare the payload** to register the stealth meta-address in the ERC-6538 contract. With the payload, you can **register the stealth meta-address** in the ERC-6538 contract using the wallet client's `sendTransaction` or similar method.
+
+There are two ways to register a stealth meta-address:
+
+1. **Register the Stealth Meta-Address Directly**: You can register the stealth meta-address for yourself directly by calling the `registerKeys` method on the ERC-6538 contract.
+2. **Register the Stealth Meta-Address on behalf of someone else**: You can register the stealth meta-address on behalf of someone else by calling the `registerKeysOnBehalf` method on the ERC-6538 contract.
+
+### Register the Stealth Meta-Address Directly
+
+Here is an example of how to register a stealth meta-address directly using [Viem](https://viem.sh/):
+
+```ts copy
+import {
+  createStealthClient,
+  parseStealthMetaAddressURI,
+  ERC6538_CONTRACT,
+} from "@scopelift/stealth-address-sdk";
+import { createWalletClient } from "viem";
+import { type Address, createWalletClient, custom } from "viem";
+import { sepolia } from "viem/chains";
+import "viem/window";
+
+const stealthMetaAddress = "0xSomeRealStealthMetaAddress";
+const schemeId = VALID_SCHEME_ID.SCHEME_ID_1;
+const chain = sepolia; // Example Viem chain
+
+if (!window.ethereum) throw new Error("window.ethereum is required");
+
+// Initialize Viem wallet client
+const walletClient = createWalletClient({
+  chain,
+  transport: custom(window.ethereum),
+});
+
+// Initialize the stealth client with your RPC URL and chain ID
+const stealthClient = createStealthClient({ rpcUrl, chainId });
+
+const registerKeys = async () => {
+  // Get the account from the wallet client
+  const [account] = await walletClient.requestAddresses();
+
+  // Prepare the registerKeys payload
+  const preparedPayload = await stealthClient.prepareRegisterKeys({
+    account,
+    ERC6538Address: ERC6538_CONTRACT.SEPOLIA,
+    schemeId,
+    stealthMetaAddress: stealthMetaAddressToRegister,
+  });
+
+  await walletClient.sendTransaction({
+    ...preparedPayload,
+  });
+};
+```
+
+### Register the Stealth Meta-Address on Behalf of Someone Else
+
+Here is an example of how to register a stealth meta-address on behalf of someone else using [Viem](https://viem.sh/):
+
+```ts copy
+import {
+  createStealthClient,
+  parseStealthMetaAddressURI,
+  ERC6538_CONTRACT,
+} from "@scopelift/stealth-address-sdk";
+import { createWalletClient } from "viem";
+
+const stealthMetaAddress = "0xSomeRealStealthMetaAddress";
+const schemeId = VALID_SCHEME_ID.SCHEME_ID_1;
+const chain = sepolia; // Example Viem chain
+
+if (!window.ethereum) throw new Error("window.ethereum is required");
+
+// Initialize Viem wallet client
+const walletClient = createWalletClient({
+  chain,
+  transport: custom(window.ethereum),
+});
+
+// Initialize the stealth client with your RPC URL and chain ID
+const stealthClient = createStealthClient({ rpcUrl, chainId });
+
+const registerKeysOnBehalf = async () => {
+  // Get the account from the wallet client
+  const [account] = await walletClient.requestAddresses();
+
+  // Prepare the registerKeys payload
+  const preparedPayload = await stealthClient.prepareRegisterKeysOnBehalf({
+    account, // The address of the one who is registering the stealth meta-address (not the registrant)
+    ERC6538Address: ERC6538_CONTRACT.SEPOLIA,
+    args: {
+      registrant: account, // The address the stealth meta-address is being registered for
+      schemeId,
+      stealthMetaAddress: stealthMetaAddressToRegister,
+      signature: "0x", // Add the signature here
+    },
+  });
+
+  await walletClient.sendTransaction({
+    ...preparedPayload,
+  });
+};
+```
+
+## Step 3: Get the Stealth Meta-Address from the ERC-6538 Contract
+
+With the stealth meta-address registered, now you can get the stealth meta-address from the ERC-6538 contract when needed.
+
+```ts copy
+import {
+  createStealthClient,
+  parseStealthMetaAddressURI,
+  ERC6538_CONTRACT,
+} from "@scopelift/stealth-address-sdk";
+
+const stealthClient = createStealthClient({ rpcUrl, chainId });
+
+const getStealthMetaAddress = async () => {
+  const stealthMetaAddress = await stealthClient.getStealthMetaAddress({
+    ERC6538Address: ERC6538_CONTRACT.SEPOLIA, // The ERC-6538 contract address
+    schemeId: VALID_SCHEME_ID.SCHEME_ID_1, // The scheme ID
+    registrant: account, // The address the stealth meta-address was registered for
+  });
+
+  return stealthMetaAddress;
+};
+```
