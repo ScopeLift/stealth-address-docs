@@ -1,16 +1,4 @@
-# Project Name
-
-A brief description of what your project does.
-
-## Table of Contents
-
-- [Project Name](#project-name)
-  - [Table of Contents](#table-of-contents)
-  - [Getting Started](#getting-started)
-    - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-  - [Running the Project](#running-the-project)
-  - [License](#license)
+# Stealth Address Documentation
 
 ## Getting Started
 
