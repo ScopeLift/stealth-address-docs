@@ -1,0 +1,60 @@
+# Overview
+
+## Introduction
+
+This documentation provides an overview and detailed information about the contracts and interfaces related to the stealth address and meta-address mechanisms defined in the ERC-5564 and ERC-6538 standards. The documentation is divided into the following sections:
+
+1. [**ERC5564Announcer**](/contracts/erc5564-contract)
+2. [**IERC5564Announcer**](/contract-interfaces/erc5564-interface)
+3. [**ERC6538Registry**](/contracts/erc6538-contract)
+4. [**IERC6538Registry**](/contract-interfaces/erc6538-interface)
+5. [**Deployment Addresses**](/contracts/deployments)
+
+## Overview of Contracts and Interfaces
+
+### ERC5564Announcer
+
+The `ERC5564Announcer` contract is designed to facilitate the broadcasting of transactions involving stealth addresses by emitting an `Announcement` event. It provides the following functionalities:
+
+- Emitting an `Announcement` event with details about transactions involving stealth addresses.
+- Functions for integrators to call and emit these events.
+
+#### Documentation:
+
+- [ERC5564Announcer.sol](/contracts/erc5564-contract)
+
+### IERC5564Announcer
+
+The `IERC5564Announcer` interface defines the standard for calling the `ERC5564Announcer` contract. It includes the signature of the `announce` function and the declaration of the `Announcement` event.
+
+#### Documentation:
+
+- [IERC5564Announcer](/contract-interfaces/erc5564-interface)
+
+### ERC6538Registry
+
+The `ERC6538Registry` contract maps accounts to their stealth meta-addresses, enabling the registration and management of these addresses. Key functionalities include:
+
+- Registering and updating stealth meta-addresses for different address schemes.
+- Handling nonces to validate signatures and prevent reuse.
+- Emitting events when stealth meta-addresses are set or nonces are incremented.
+
+#### Documentation:
+
+- [ERC6538Registry.sol](/contracts/erc6538-contract)
+
+### IERC6538Registry
+
+The `IERC6538Registry` interface defines the standard for interacting with the `ERC6538Registry` contract. It includes function signatures for registering keys, incrementing nonces, retrieving meta-addresses, and handling events.
+
+#### Documentation:
+
+- [IERC6538Registry](/contract-interfaces/erc6538-interface)
+
+### Contract Addresses
+
+This section provides the contract addresses for the deployed instances of the `ERC5564Announcer` and `ERC6538Registry` contracts. These addresses are essential for integrators and users interacting with the actual deployed contracts on different networks (e.g., Ethereum mainnet, testnets).
+
+#### Documentation:
+
+- [Contract Addresses](/contracts/deployments)

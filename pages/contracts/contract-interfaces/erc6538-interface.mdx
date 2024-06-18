@@ -1,0 +1,160 @@
+# IERC6538Registry
+
+Interface for calling the `ERC6538Registry` contract to map accounts to their stealth meta-addresses. See [ERC-6538](https://eips.ethereum.org/EIPS/eip-6538) to learn more.
+
+### Code: [`IERC6538Registry.sol`](https://github.com/ScopeLift/stealth-address-erc-contracts/blob/b6f7d989b6247f81ceede5d1be2ffb23c1cb39b5/src/interfaces/IERC6538Registry.sol)
+
+## Functions
+
+### registerKeys
+
+```solidity
+function registerKeys(uint256 schemeId, bytes calldata stealthMetaAddress) external
+```
+
+Sets the caller's stealth meta-address for the given scheme ID.
+
+#### Parameters:
+
+| Type      | Name                 | Description                                                                                                                                                   |
+| --------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `uint256` | `schemeId`           | Identifier corresponding to the applied stealth address scheme, e.g., 1 for `secp256k1`, as specified in [ERC-5564](https://eips.ethereum.org/EIPS/eip-5564). |
+| `bytes`   | `stealthMetaAddress` | The stealth meta-address to register.                                                                                                                         |
+
+### registerKeysOnBehalf
+
+```solidity
+function registerKeysOnBehalf(
+  address registrant,
+  uint256 schemeId,
+  bytes memory signature,
+  bytes calldata stealthMetaAddress
+) external
+```
+
+Sets the `registrant`'s stealth meta-address for the given scheme ID.
+
+#### Parameters:
+
+| Type      | Name                 | Description                                                                                                                                                   |
+| --------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `address` | `registrant`         | Address of the registrant.                                                                                                                                    |
+| `uint256` | `schemeId`           | Identifier corresponding to the applied stealth address scheme, e.g., 1 for `secp256k1`, as specified in [ERC-5564](https://eips.ethereum.org/EIPS/eip-5564). |
+| `bytes`   | `signature`          | A signature from the `registrant` authorizing the registration.                                                                                               |
+| `bytes`   | `stealthMetaAddress` | The stealth meta-address to register.                                                                                                                         |
+
+### incrementNonce
+
+```solidity
+function incrementNonce() external
+```
+
+Increments the nonce of the sender to invalidate existing signatures.
+
+### DOMAIN_SEPARATOR
+
+```solidity
+function DOMAIN_SEPARATOR() external view returns (bytes32)
+```
+
+Returns the domain separator used in this contract.
+
+### stealthMetaAddressOf
+
+```solidity
+function stealthMetaAddressOf(address registrant, uint256 schemeId) external view returns (bytes memory)
+```
+
+Returns the stealth meta-address for the given `registrant` and `schemeId`.
+
+#### Parameters:
+
+| Type      | Name         | Description                                                     |
+| --------- | ------------ | --------------------------------------------------------------- |
+| `address` | `registrant` | The address of the registrant.                                  |
+| `uint256` | `schemeId`   | Identifier corresponding to the applied stealth address scheme. |
+
+#### Return Values:
+
+| Type    | Description               |
+| ------- | ------------------------- |
+| `bytes` | The stealth meta-address. |
+
+### ERC6538REGISTRY_ENTRY_TYPE_HASH
+
+```solidity
+function ERC6538REGISTRY_ENTRY_TYPE_HASH() external view returns (bytes32)
+```
+
+Returns the EIP-712 type hash used in `registerKeysOnBehalf`.
+
+#### Return Values:
+
+| Type      | Description            |
+| --------- | ---------------------- |
+| `bytes32` | The EIP-712 type hash. |
+
+### nonceOf
+
+```solidity
+function nonceOf(address registrant) external view returns (uint256)
+```
+
+Returns the nonce of the given `registrant`.
+
+#### Parameters:
+
+| Type      | Name         | Description                    |
+| --------- | ------------ | ------------------------------ |
+| `address` | `registrant` | The address of the registrant. |
+
+#### Return Values:
+
+| Type      | Description |
+| --------- | ----------- |
+| `uint256` | The nonce.  |
+
+## Events
+
+### StealthMetaAddressSet
+
+```solidity
+event StealthMetaAddressSet(
+  address indexed registrant, uint256 indexed schemeId, bytes stealthMetaAddress
+);
+```
+
+Emitted when a registrant updates their stealth meta-address.
+
+#### Parameters:
+
+| Type      | Name                 | Description                                                                                                                                                   |
+| --------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `address` | `registrant`         | The address of the registrant of the stealth meta-address.                                                                                                    |
+| `uint256` | `schemeId`           | Identifier corresponding to the applied stealth address scheme, e.g., 1 for `secp256k1`, as specified in [ERC-5564](https://eips.ethereum.org/EIPS/eip-5564). |
+| `bytes`   | `stealthMetaAddress` | The stealth meta-address. Based on [ERC-5564](https://eips.ethereum.org/EIPS/eip-5564).                                                                       |
+
+### NonceIncremented
+
+```solidity
+event NonceIncremented(address indexed registrant, uint256 newNonce);
+```
+
+Emitted when a registrant increments their nonce.
+
+#### Parameters:
+
+| Type      | Name         | Description                             |
+| --------- | ------------ | --------------------------------------- |
+| `address` | `registrant` | The account that incremented the nonce. |
+| `uint256` | `newNonce`   | The new nonce value.                    |
+
+## Errors
+
+### ERC6538Registry\_\_InvalidSignature
+
+```solidity
+error ERC6538Registry__InvalidSignature();
+```
+
+Emitted when an invalid signature is provided to `registerKeysOnBehalf`.

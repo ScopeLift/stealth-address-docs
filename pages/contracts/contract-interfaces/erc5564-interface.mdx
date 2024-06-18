@@ -1,0 +1,55 @@
+# IERC5564Announcer
+
+Interface for calling the `ERC5564Announcer` contract, which emits an `Announcement` event to broadcast information about a transaction involving a stealth address. See [ERC-5564](https://eips.ethereum.org/EIPS/eip-5564) to learn more.
+
+### Code: [`IERC5564Announcer.sol`](https://github.com/ScopeLift/stealth-address-erc-contracts/blob/b6f7d989b6247f81ceede5d1be2ffb23c1cb39b5/src/interfaces/IERC5564Announcer.sol)
+
+## Functions
+
+### announce
+
+```solidity
+function announce(
+  uint256 schemeId,
+  address stealthAddress,
+  bytes memory ephemeralPubKey,
+  bytes memory metadata
+) external
+```
+
+Called by integrators to emit an `Announcement` event.
+
+#### Parameters:
+
+| Type      | Name              | Description                                                                                                                                                   |
+| --------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `uint256` | `schemeId`        | Identifier corresponding to the applied stealth address scheme, e.g., 1 for `secp256k1`, as specified in [ERC-5564](https://eips.ethereum.org/EIPS/eip-5564). |
+| `address` | `stealthAddress`  | The computed stealth address for the recipient.                                                                                                               |
+| `bytes`   | `ephemeralPubKey` | Ephemeral public key used by the sender.                                                                                                                      |
+| `bytes`   | `metadata`        | Arbitrary data to emit with the event. The first byte MUST be the view tag. The remaining metadata can be used freely by the senders.                         |
+
+## Events
+
+### Announcement
+
+```solidity
+event Announcement(
+  uint256 indexed schemeId,
+  address indexed stealthAddress,
+  address indexed caller,
+  bytes ephemeralPubKey,
+  bytes metadata
+);
+```
+
+Emitted when something is sent to a stealth address.
+
+#### Parameters:
+
+| Type      | Name              | Description                                                                                                                                                                                                                                                |
+| --------- | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `uint256` | `schemeId`        | Identifier corresponding to the applied stealth address scheme, e.g., 1 for `secp256k1`, as specified in [ERC-5564](https://eips.ethereum.org/EIPS/eip-5564).                                                                                              |
+| `address` | `stealthAddress`  | The computed stealth address for the recipient.                                                                                                                                                                                                            |
+| `address` | `caller`          | The caller of the `announce` function that emitted this event.                                                                                                                                                                                             |
+| `bytes`   | `ephemeralPubKey` | Ephemeral public key used by the sender to derive the `stealthAddress`.                                                                                                                                                                                    |
+| `bytes`   | `metadata`        | Arbitrary data to emit with the event. The first byte MUST be the view tag. The remaining metadata can be used by the senders as they like. See [ERC-5564](https://eips.ethereum.org/EIPS/eip-5564) for recommendations on how to structure this metadata. |

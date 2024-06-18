@@ -1,0 +1,79 @@
+# ERC5564Announcer.sol
+
+## Overview
+
+The `ERC5564Announcer` contract is designed to facilitate the broadcasting of transactions involving stealth addresses by emitting an `Announcement` event. This event contains relevant information that can be used to reconstruct the transaction and validate its parameters.
+
+### Code: [`ERC5564Announcer.sol`](https://github.com/ScopeLift/stealth-address-erc-contracts/blob/b6f7d989b6247f81ceede5d1be2ffb23c1cb39b5/src/ERC5564Announcer.sol)
+
+## Events
+
+### Announcement
+
+The `Announcement` event is emitted when the `announce` function is called. Here are the key components of this event:
+
+- **schemeId** (`uint256`): Identifier corresponding to the applied stealth address scheme (e.g., `1` for `secp256k1` as specified in [ERC-5564](https://eips.ethereum.org/EIPS/eip-5564)).
+- **stealthAddress** (`address`): The computed stealth address for the recipient.
+- **caller** (`address`): The address that called the `announce` function.
+- **ephemeralPubKey** (`bytes`): Ephemeral public key used by the sender to derive the `stealthAddress`.
+- **metadata** (`bytes`): Arbitrary data to emit with the event. The first byte MUST be the view tag. The remaining metadata can be used by the senders as per their requirements (refer to [ERC-5564](https://eips.ethereum.org/EIPS/eip-5564) for recommended metadata structure).
+
+#### Event Signature
+
+```solidity
+event Announcement(
+  uint256 indexed schemeId,
+  address indexed stealthAddress,
+  address indexed caller,
+  bytes ephemeralPubKey,
+  bytes metadata
+);
+```
+
+## Functions
+
+### announce
+
+The `announce` function is used by integrators to emit the `Announcement` event. It takes the following parameters:
+
+- **schemeId** (`uint256`): Identifier corresponding to the applied stealth address scheme.
+- **stealthAddress** (`address`): The computed stealth address for the recipient.
+- **ephemeralPubKey** (`bytes`): The ephemeral public key used by the sender.
+- **metadata** (`bytes`): Arbitrary data to emit with the event. The first byte MUST be the view tag. The remaining metadata can be used freely by the senders.
+
+#### Function Signature
+
+```solidity
+function announce(
+  uint256 schemeId,
+  address stealthAddress,
+  bytes memory ephemeralPubKey,
+  bytes memory metadata
+) external
+```
+
+#### Description
+
+When called, this function emits the `Announcement` event with all the parameters supplied to it.
+
+#### Usage
+
+To use the `announce` function, you need to pass the required parameters as per the function signature:
+
+```solidity
+contract MyContract {
+    ERC5564Announcer public announcer;
+
+    constructor(address announcerAddress) {
+        announcer = ERC5564Announcer(announcerAddress);
+    }
+
+    function myAnnounceFunction(uint256 _schemeId, address _stealthAddress, bytes memory _ephemeralPubKey, bytes memory _metadata) public {
+        announcer.announce(_schemeId, _stealthAddress, _ephemeralPubKey, _metadata);
+    }
+}
+```
+
+## Related Links
+
+- [ERC-5564](https://eips.ethereum.org/EIPS/eip-5564)

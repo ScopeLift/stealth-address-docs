@@ -1,4 +1,4 @@
 {
-  "erc5564-interface": "ERC5564Announcer.sol Interface",
-  "erc6538-interface": "ERC6538Registry.sol Interface"
+  "erc5564-interface": "IERC5564Announcer.sol",
+  "erc6538-interface": "IERC6538Registry.sol"
 }
